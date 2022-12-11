@@ -114,17 +114,6 @@ public class ClienteRestController {
 		
 		if (result.hasErrors()) {
 			
-			/*
-			List<String> errors = new ArrayList<>();
-			
-			for(FieldError err: result.getFieldErrors()) {
-				errors.add("El campo "+err.getField()+" "+err.getDefaultMessage());
-			}
-			
-			*/
-			
-			//Errores, validaciones de los campos
-			
 			List<String> errors = result.getFieldErrors()
 					.stream()
 					.map(err -> "El campo '"+ err.getField()+"' "+ err.getDefaultMessage())
@@ -162,15 +151,6 @@ public class ClienteRestController {
 		
 		if (result.hasErrors()) {
 			
-			/*
-			List<String> errors = new ArrayList<>();
-			
-			for(FieldError err: result.getFieldErrors()) {
-				errors.add("El campo "+err.getField()+" "+err.getDefaultMessage());
-			}
-			*/
-			
-			//Errores, validaciones de los campos
 			List<String> errors = result.getFieldErrors()
 					.stream()
 					.map(err -> "El campo '"+ err.getField()+"' "+ err.getDefaultMessage())
@@ -193,6 +173,7 @@ public class ClienteRestController {
 			clienteActual.setApellido(cliente.getApellido());
 			clienteActual.setEmail(cliente.getEmail());
 			clienteActual.setCreateAt(cliente.getCreateAt());
+			clienteActual.setRegion(cliente.getRegion());
 			
 			clienteUpdate = clienteService.saveCliente(clienteActual);
 			
