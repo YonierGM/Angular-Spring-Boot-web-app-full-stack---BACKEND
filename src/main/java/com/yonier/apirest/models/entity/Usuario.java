@@ -44,6 +44,12 @@ public class Usuario implements Serializable{
 	uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id","role_id"})})
 	private List<Role> roles;
 	
+	private String nombre;
+	private String apellido;
+	
+	@Column(unique = true)
+	private String email;
+	
 
 	/**
 	 * 

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,6 +52,7 @@ public class RegionController {
 		return regionService.findAll(pageable);
 	}
 	
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@SuppressWarnings("unused")
 	@GetMapping("/regiones/{id}")
 	public ResponseEntity<?>showRegion(@PathVariable Long id) {
@@ -79,7 +81,7 @@ public class RegionController {
 		return new ResponseEntity<Region>(region, HttpStatus.OK);		
 	}
 	
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/regiones")
 	//RequestBody ya que la respuesta es en formato json
 	public ResponseEntity<?> createRegion(@Valid @RequestBody Region region, BindingResult result) {
@@ -117,6 +119,7 @@ public class RegionController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@PutMapping("/regiones/{id}")
 	public ResponseEntity<?> updateRegion(@Valid @RequestBody Region region, BindingResult result, @PathVariable Long id) {
 		
@@ -171,6 +174,7 @@ public class RegionController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/regiones/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		 
